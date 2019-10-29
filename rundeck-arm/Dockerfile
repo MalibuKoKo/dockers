@@ -1,5 +1,5 @@
-#FROM jeanblanchard/java:jdk-8
-FROM scaleway/java:armhf-latest
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE:-scaleway/java:armhf-latest}
 
 # Download
 ADD https://dl.bintray.com/rundeck/rundeck-maven/rundeck-launcher-${RUNDECK_VERSION:-2.11.14}.jar /opt/rundeck/

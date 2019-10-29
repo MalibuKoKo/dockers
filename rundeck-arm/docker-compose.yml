@@ -7,9 +7,20 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
+        #- BASE_IMAGE=scaleway/java:armhf-latest
+        - BASE_IMAGE=arm64v8/openjdk:11-jdk-slim
         - RUNDECK_VERSION=2.11.14
     container_name: rundeck-arm
+    entrypoint: tail -f /dev/null
     image: malibukoko/rundeck_arm:v2.2
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 500M
+        reservations:
+          cpus: '0.5'
+          memory: 250M
     restart: unless-stopped
     expose:
       - 4440
