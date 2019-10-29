@@ -14,3 +14,6 @@ VOLUME ["/opt/rundeck/etc", \
 
 EXPOSE 4440 4443
 ENTRYPOINT ["/opt/rundeck/entrypoint.sh"]
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=2m --retries=10 \
+  CMD curl -f -I http://localhost:4440/user/login || exit 1 

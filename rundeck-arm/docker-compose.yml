@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  'rundeck':
+    hostname: localhost
+    build:
+      context: .
+      dockerfile: Dockerfile
+      #args:
+      #  - lang=fr_FR.UTF-8
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "-I","http://localhost:4440/user/login"]
+#      interval: 30s
+#      timeout: 3s
+#      start_period: 120s
+#      retries: 5
+    container_name: rundeck-arm
+    image: malibukoko/rundeck_arm:v2.0
+    restart: unless-stopped
+    expose:
+      - 4440
+      - 4443
+    ports:
+      - 4440:4440
+      - 4443:4443
+    volumes:
+      - /opt/rundeck/etc:/opt/rundeck/etc:rw
+      - /opt/rundeck/var:/opt/rundeck/var:rw
+      - /opt/rundeck/projects:/opt/rundeck/projects:rw
+      - /opt/rundeck/server/config:/opt/rundeck/server/config:rw
+      - /opt/rundeck/server/data:/opt/rundeck/server/data:rw
+      - /opt/rundeck/server/logs:/opt/rundeck/server/logs:rw
+    #environment:
+    #  - SERVER_URL=http://127.0.0.1:4440
+    logging:
+      driver: "none"
+      #driver: json-file
+      #options:
+        #max-size: '12m'
+        #max-file: '5'
