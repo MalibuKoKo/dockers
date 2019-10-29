@@ -6,8 +6,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - RUNDECK_VERSION=2.11.14
     container_name: rundeck-arm
-    image: malibukoko/rundeck_arm:v2.0
+    image: malibukoko/rundeck_arm:v2.2
     restart: unless-stopped
     expose:
       - 4440
@@ -22,6 +24,7 @@ services:
       - /opt/rundeck/server/config:/opt/rundeck/server/config:rw
       - /opt/rundeck/server/data:/opt/rundeck/server/data:rw
       - /opt/rundeck/server/logs:/opt/rundeck/server/logs:rw
+      - /opt/rundeck/tools:/opt/rundeck/tools:rw
     logging:
       driver: json-file
       options:

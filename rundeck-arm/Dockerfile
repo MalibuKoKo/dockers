@@ -2,7 +2,8 @@
 FROM scaleway/java:armhf-latest
 
 # Download
-ADD http://dl.bintray.com/rundeck/rundeck-maven/rundeck-launcher-2.6.4.jar /opt/rundeck/
+ADD https://dl.bintray.com/rundeck/rundeck-maven/rundeck-launcher-${RUNDECK_VERSION:-2.11.14}.jar /opt/rundeck/
+
 COPY content /
 
 VOLUME ["/opt/rundeck/etc", \
