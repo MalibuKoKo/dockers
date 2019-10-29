@@ -19,6 +19,27 @@ A simple Rundeck docker image based on alpine and Oracle JDK 8. The rundeck serv
 - 4440
 - 4443
 
+## build
+
+BASE_IMAGE:
+
+- scaleway/java:armhf-latest
+- arm64v8/openjdk:8-jdk-slim
+
+
+```shell
+IMAGE="malibukoko/rundeck_arm"
+TAG="v2.2"
+BASE_IMAGE="arm64v8/openjdk:8-jdk-slim"
+RUNDECK_VERSION="2.11.14"
+
+docker build \
+  --tag ${IMAGE}:${TAG} \
+  --build-arg BASE_IMAGE=${BASE_IMAGE} \
+  --build-arg RUNDECK_VERSION=${RUNDECK_VERSION} \
+  .
+```
+
 ## run
 
 ```shell
